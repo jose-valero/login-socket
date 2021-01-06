@@ -1,0 +1,13 @@
+@import '~bootstrap/scss/bootstrap';
+$color-facebook: #3b5998;
+
+.login__container {
+  margin: 5% auto;
+  padding: 2rem;
+  background-color: $color-facebook;
+  color: #ffff;
+}
+
+.bg-dark {
+  background-color: $color-facebook !important;
+}
