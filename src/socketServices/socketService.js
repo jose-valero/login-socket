@@ -6,10 +6,14 @@ const createUser = (user) => {
   socket.emit('CREATE_USER', user);
 };
 
+const onHome = () => {
+  socket.emit('ON_HOME');
+};
+
 const listUsers = () => {
   return new Observable((observer) => {
     socket.on('LIST_USER', (data) => observer.next(data));
   });
 };
 
-export { createUser, listUsers };
+export { createUser, listUsers,onHome };

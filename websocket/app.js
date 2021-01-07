@@ -33,6 +33,11 @@ io.on('connect', function (sockets) {
     console.log('a EDIT_USER');
   });
 
+  sockets.on(events.ON_HOME, () => {
+    io.emit(events.LIST_USER, mockDb.listUsers());
+    console.log('a ON_HOME');
+  });
+
   sockets.on(events.CREATE_USER, (userToCreate) => {
     console.log('a user created', userToCreate);
     mockDb.createUser(userToCreate);

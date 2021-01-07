@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useHistory } from 'react-router-dom';
 import { auth } from '../../../firebase/firebase.config.js';
-import { createUser, listUsers } from '../../../socketServices/socketService';
+import { createUser } from '../../../socketServices/socketService';
 
 const Register = () => {
   let history = useHistory();
@@ -29,10 +29,6 @@ const Register = () => {
     } else {
       alert('Password do not match');
     }
-
-    listUsers().subscribe((event) => {
-      console.log('list_users:', event);
-    });
 
     createUser({
       username: email,

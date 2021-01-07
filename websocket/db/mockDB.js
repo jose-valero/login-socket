@@ -18,7 +18,6 @@ function listUsers() {
     array.push(value);
     value = iterator.next().value;
   }
-
   console.log('savedValues', array);
   return array;
 }
