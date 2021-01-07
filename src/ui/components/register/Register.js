@@ -1,41 +1,104 @@
+import { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { useHistory } from 'react-router-dom';
+import { auth } from '../../../firebase/firebase.config.js';
+import { createUser, listUsers } from '../../../socketServices/socketService';
+
 const Register = () => {
+  let history = useHistory();
+  const [name, setName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
+
+  const handleSummit = (event) => {
+    event.preventDefault();
+    setName('');
+    setLastName('');
+    setEmail('');
+    setPassword('');
+
+    if (password === passwordConfirmation) {
+      auth
+        .createUserWithEmailAndPassword(email, password)
+        .then((user) => console.log(user))
+        .catch((err) => console.error(err));
+    } else {
+      alert('Password do not match');
+    }
+
+    listUsers().subscribe((event) => {
+      console.log('list_users:', event);
+    });
+
+    createUser({
+      username: email,
+      password: password,
+    });
+
+    history.push('/login');
+    console.log(
+      `REGISTER_: name:${name} - lastname:${lastName} - email:${email} - password:${password}`
+    );
+  };
+
   const TitleStyle = {
     textAlign: 'center',
     color: '#3b5998',
   };
   return (
     <Container>
-      <h1 style={TitleStyle} className='my-4'>Register</h1>
-      <Form className='login__container'>
-        <Form.Group controlId='formBasicEmail'>
+      <h1 style={TitleStyle} className='my-4'>
+        Register
+      </h1>
+      <Form className='login__container' onSubmit={handleSummit}>
+        <Form.Group>
           <Form.Label>First name</Form.Label>
           <Form.Control
             required
             type='text'
             placeholder='First name'
-            defaultValue='Mark'
+            onChange={(e) => setName(e.target.value)}
+            value={name}
           />
           <Form.Label>Lastname</Form.Label>
           <Form.Control
             required
             type='text'
             placeholder='Lastname'
-            defaultValue='Mark'
+            onChange={(e) => setLastName(e.target.value)}
+            value={lastName}
           />
           <Form.Label>Email address</Form.Label>
-          <Form.Control type='email' placeholder='Enter email' />
+          <Form.Control
+            type='email'
+            placeholder='Enter email'
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+          />
           <Form.Text>We'll never share your email with anyone else.</Form.Text>
         </Form.Group>
 
         <Form.Group controlId='formBasicPassword'>
           <Form.Label>Password</Form.Label>
-          <Form.Control type='password' placeholder='Password' />
+          <Form.Control
+            type='password'
+            placeholder='Password'
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+          />
         </Form.Group>
-        <Form.Group controlId='formBasicCheckbox'>
-          <Form.Check type='checkbox' label='Check me out' />
+        <Form.Group controlId='formBasicPasswordConfirmation'>
+          <Form.Label>Password Confirmation</Form.Label>
+          <Form.Control
+            type='password'
+            placeholder='password Confirmation'
+            onChange={(e) => setPasswordConfirmation(e.target.value)}
+            value={passwordConfirmation}
+          />
         </Form.Group>
         <Button variant='primary' type='submit'>
           Submit

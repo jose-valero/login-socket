@@ -2,8 +2,8 @@ import Container from 'react-bootstrap/Container';
 
 const About = () => {
   return (
-    <Container className="my-5">
-      <p>
+    <Container className='my-5'>
+      <span>
         Challengue de la empresa Wispro para Frontend Developer, Inicio de la
         prueba tecnica 6/01/2021. dentro de la prueba tenemos que cumplir los
         siguientes requerimientos:
@@ -27,10 +27,10 @@ const About = () => {
             es obligatorio, pero es deseable el uso de websockets)
           </li>
           <li>
-            6. Integrar bootstrap o alguna librería front-end para los estilos
+            Integrar bootstrap o alguna librería front-end para los estilos
           </li>
         </ul>
-      </p>
+      </span>
     </Container>
   );
 };

@@ -1,9 +1,9 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Layout from '../container/Layout';
-import Home from '../pages/home/Home';
-import About from '../pages/about/About';
-import Register from '../components/register/Register';
-import Login from '../components/login/Login';
+import Layout from '../ui/container/Layout';
+import Home from '../ui/pages/home/Home';
+import About from '../ui/pages/about/About';
+import Register from '../ui/components/register/Register';
+import Login from '../ui/components/login/Login';
 function App() {
   return (
     <BrowserRouter>
