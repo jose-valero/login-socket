@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useHistory } from 'react-router-dom';
 import { auth } from '../../../firebase/firebase.config.js';
-import { createUser } from '../../../socketServices/socketService';
+// import { createUser } from '../../../socketServices/socketService';
 
 const Register = () => {
   let history = useHistory();
@@ -16,11 +16,14 @@ const Register = () => {
 
   const handleSummit = (event) => {
     event.preventDefault();
+
+    //reset the state
     setName('');
     setLastName('');
     setEmail('');
     setPassword('');
 
+    //validation firebase
     if (password === passwordConfirmation) {
       auth
         .createUserWithEmailAndPassword(email, password)
@@ -30,17 +33,21 @@ const Register = () => {
       alert('Password do not match');
     }
 
-    createUser({
-      username: email,
-      password: password,
-    });
+    //socket.io
+    // createUser({
+    //   username: email,
+    //   password: password,
+    // });
 
+    //redirect to login view
     history.push('/login');
+
     console.log(
       `REGISTER_: name:${name} - lastname:${lastName} - email:${email} - password:${password}`
     );
   };
 
+  //styles
   const TitleStyle = {
     textAlign: 'center',
     color: '#3b5998',

@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Link, useHistory } from 'react-router-dom';
 import { auth } from '../../../firebase/firebase.config.js';
+
 const Login = () => {
   let history = useHistory();
   const [email, setEmail] = useState('');
