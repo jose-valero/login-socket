@@ -1,8 +1,13 @@
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
+import { auth } from '../../../firebase/firebase.config';
+import { useSelector } from 'react-redux';
 
 const Navigation = () => {
+  const state = useSelector((state) => state);
+
   const LinkStyles = {
     margin: '0.5rem',
     textDecoration: 'none',
@@ -28,6 +33,11 @@ const Navigation = () => {
           <Link to='/register' style={LinkStyles}>
             Register
           </Link>
+          {state.auth.currentUser && state.auth.currentUser ? (
+            <Button onClick={() => auth.signOut()} variant='warning'>
+              Logout
+            </Button>
+          ) : null}
         </Nav>
       </Navbar.Collapse>
     </Navbar>

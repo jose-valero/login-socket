@@ -1,10 +1,10 @@
-
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Layout from '../ui/container/Layout';
 import Home from '../ui/pages/home/Home';
 import About from '../ui/pages/about/About';
-import Register from '../ui/components/register/Register';
-import Login from '../ui/components/login/Login';
+import Register from '../ui/components/register';
+import LogIn from '../ui/components/login';
+
 function App() {
   return (
     <BrowserRouter>
@@ -12,7 +12,7 @@ function App() {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/about' component={About} />
-          <Route exact path='/login' component={Login} />
+          <Route exact path='/login' component={LogIn} />
           <Route exact path='/register' component={Register} />
         </Switch>
       </Layout>
