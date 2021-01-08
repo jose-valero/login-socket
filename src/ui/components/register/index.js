@@ -1,47 +1,42 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useHistory } from 'react-router-dom';
-import { auth } from '../../../firebase/firebase.config.js';
-// import { createUser } from '../../../socketServices/socketService';
+import { useDispatch, useSelector } from 'react-redux';
+import { userReg } from '../../../redux/actions/auth.actions';
 
 const Register = () => {
-  let history = useHistory();
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state);
+  const isUser = state.auth.isReg;
+  const history = useHistory();
+
+  useEffect(() => {
+    if (isUser) {
+      history.push('/login');
+    }
+  }, [isUser, history]);
 
   const handleSummit = (event) => {
     event.preventDefault();
-
-    //reset the state
+    //validation firebase
+    if (password === passwordConfirmation) {
+      dispatch(userReg(email, password));
+    } else {
+      alert('Password do not match');
+    }
     setName('');
     setLastName('');
     setEmail('');
     setPassword('');
-
-    //validation firebase
-    if (password === passwordConfirmation) {
-      auth
-        .createUserWithEmailAndPassword(email, password)
-        .then((user) => console.log(user))
-        .catch((err) => console.error(err));
-    } else {
-      alert('Password do not match');
-    }
-
-    //socket.io
-    // createUser({
-    //   username: email,
-    //   password: password,
-    // });
-
-    //redirect to login view
-    history.push('/login');
-
+    setPasswordConfirmation('');
+  
     console.log(
       `REGISTER_: name:${name} - lastname:${lastName} - email:${email} - password:${password}`
     );

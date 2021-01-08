@@ -1,38 +1,22 @@
-import Container from 'react-bootstrap/Container';
-// import { listUsers, onHome } from '../../../socketServices/socketService';
 // import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import Container from 'react-bootstrap/Container';
 
-// let observer = null;
-// let list = [];
-// onHome();
-//lo que va a llegar del evento e sla lista de usuario y con esta lista voy a hbacer las graficas
 const Home = () => {
-  // const [listo, setListo] = useState([]);
-
-  // if (!observer) {
-  //   console.log('creando subscribe');
-  //   observer = listUsers();
-  //   observer.subscribe((listOfUsers) => {
-  //     if (listOfUsers.length > 0) {
-  //       setListo(listOfUsers);
-  //       // list = listOfUsers;
-  //       console.log('list_users josue:', list);
-  //     }
-  //   });
-  // }
-
-  const HomeStyle = {
-    color: 'red',
-  };
-
-  // console.log('listo iteracion', listo);
+  const currentUser = useSelector((state) => state.auth.currentUser);
 
   return (
     <Container>
-      <h1 style={HomeStyle}>Home</h1>
+      <div className='d-flex justify-content-center my-5'>
+        {currentUser && currentUser ? (
+          <h1 className='text-primary '>ESTOY LOGEADO</h1>
+        ) : (
+          <h1 className='text-danger'>NO ESTOY LOGEADO</h1>
+        )}
+      </div>
       <ul>
         {/* {listo.map((value) => {
-          return <li>{value.username}</li>;
+          return <li>{value.userName}</li>;
         })} */}
       </ul>
     </Container>

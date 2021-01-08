@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Spinner from 'react-bootstrap/Spinner';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userAuth } from '../../../redux/actions/auth.actions';
 
@@ -12,24 +12,26 @@ const LogIn = () => {
   const [password, setPassword] = useState('');
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
-  // let history = useHistory();
+  const isUser = state.auth.currentUser;
+  const history = useHistory();
+
+  useEffect(() => {
+    if (isUser) {
+      history.push('/');
+    }
+  }, [isUser, history]);
 
   const handleSummit = (event) => {
     event.preventDefault();
+    dispatch(userAuth(email, password));
     setEmail('');
     setPassword('');
-    dispatch(userAuth(email, password));
-    // history.push('/');
     console.log(`LOGIN_: email:${email} - password:${password}`);
   };
 
-  const TitleStyle = {
-    textAlign: 'center',
-    color: '#3b5998',
-  };
   return (
     <Container className=''>
-      <h1 style={TitleStyle} className='my-4'>
+      <h1 style={{ textAlign: 'center', color: '#3b5998' }} className='my-4'>
         Login
       </h1>
       {state.auth.isLoading ? (
@@ -58,18 +60,24 @@ const LogIn = () => {
           />
         </Form.Group>
         <Form.Text>
-          if you dont have account please{' '}
-          <Link to='/register' style={{ color: '#accafa' }}>
+          if you dont have account please
+          <Link
+            to='/register'
+            style={{ color: '#accafa', marginLeft: '0.5rem' }}
+          >
             register
           </Link>
         </Form.Text>
-        <Button variant='primary' type='submit' className='mt-4'>
+        <Button variant='primary' type='submit' className='my-4'>
           Submit
         </Button>
         {state.auth.errorAuth && (
-          <p>
-            There is no user record corresponding to this identifier. The user
-            may have been deleted.
+          <p className='text-warning'>
+            There is no user record corresponding to this identifier. Please try
+            again or
+            <Link to='/register' className='text-warning ml-1'>
+              register
+            </Link>
           </p>
         )}
       </Form>
