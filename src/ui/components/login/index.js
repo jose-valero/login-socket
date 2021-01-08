@@ -37,7 +37,7 @@ const LogIn = () => {
           <Spinner animation='border' variant='primary' />
         </div>
       ) : null}
-      {console.log('test', state)}
+
       <Form className='login__container' onSubmit={handleSummit}>
         <Form.Group controlId='formBasicEmail' required>
           <Form.Label>Email address</Form.Label>

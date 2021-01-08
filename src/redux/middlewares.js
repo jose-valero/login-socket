@@ -4,7 +4,9 @@ import { createPromise } from 'redux-promise-middleware';
 
 const middlewares = [
   thunk,
-  reduxImmutableStateInvariant(),
+  reduxImmutableStateInvariant({
+    ignore: ['auth.currentUser'],
+  }),
   createPromise({
     promiseTypeSuffixes: ['START', 'SUCCESS', 'ERROR'],
   }),
