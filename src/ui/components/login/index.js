@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import Container from 'react-bootstrap/Container';
+import Spinner from 'react-bootstrap/Spinner';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userAuth } from '../../../redux/actions/auth.actions';
-
-import Spinner from 'react-bootstrap/Spinner';
 
 const LogIn = () => {
   const [email, setEmail] = useState('');
@@ -21,7 +20,7 @@ const LogIn = () => {
     setPassword('');
     dispatch(userAuth(email, password));
     // history.push('/');
-    // console.log(`LOGIN_: email:${email} - password:${password}`);
+    console.log(`LOGIN_: email:${email} - password:${password}`);
   };
 
   const TitleStyle = {
@@ -38,6 +37,7 @@ const LogIn = () => {
           <Spinner animation='border' variant='primary' />
         </div>
       ) : null}
+      {console.log('test', state)}
       <Form className='login__container' onSubmit={handleSummit}>
         <Form.Group controlId='formBasicEmail' required>
           <Form.Label>Email address</Form.Label>
