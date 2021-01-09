@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { userReg } from '../../../redux/actions/auth.actions';
 
 const Register = () => {
-  const [name, setName] = useState('');
+  const [displayName, setDisplayName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -31,14 +31,14 @@ const Register = () => {
     } else {
       alert('Password do not match');
     }
-    setName('');
+    setDisplayName('');
     setLastName('');
     setEmail('');
     setPassword('');
     setPasswordConfirmation('');
   
     console.log(
-      `REGISTER_: name:${name} - lastname:${lastName} - email:${email} - password:${password}`
+      `REGISTER_: name:${displayName} - lastname:${lastName} - email:${email} - password:${password}`
     );
   };
 
@@ -59,8 +59,8 @@ const Register = () => {
             required
             type='text'
             placeholder='First name'
-            onChange={(e) => setName(e.target.value)}
-            value={name}
+            onChange={(e) => setDisplayName(e.target.value)}
+            value={displayName}
           />
           <Form.Label>Lastname</Form.Label>
           <Form.Control
