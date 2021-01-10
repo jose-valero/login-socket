@@ -5,5 +5,5 @@ module.exports = {
   LIST_USER: 'LIST_USER',
   DELETE_USER: 'DELETE_USER',
   EDIT_USER: 'EDIT_USER',
-  ON_HOME: 'ON_HOME'
+  ON_HOME: 'ON_HOME',
 };

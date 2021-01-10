@@ -2,8 +2,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Layout from '../ui/container/Layout';
 import Home from '../ui/pages/home/Home';
 import About from '../ui/pages/about/About';
-import Register from '../ui/components/register';
-import LogIn from '../ui/components/login';
+import Register from '../ui/components/register/SingUp';
+import LogIn from '../ui/components/login/SingIn';
 
 function App() {
   return (

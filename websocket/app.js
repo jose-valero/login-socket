@@ -23,7 +23,7 @@ const listAllUsers = (nextPageToken) => {
   // List batch of users, 1000 at a time.
   admin
     .auth()
-    .listUsers(1000, nextPageToken)
+    .listUsers(12, nextPageToken)
     .then((listUsersResult) => {
       io.emit(events.LIST_USER, listUsersResult);
     })
@@ -42,7 +42,8 @@ server.listen(PORT, function () {
 io.on('connect', function (sockets) {
   console.log('Made socket connection');
   //METODO DELETE USER
-  sockets.on(events.DELETE_USER, ({ uid }) => {
+  sockets.on(events.DELETE_USER, (uid) => {
+    console.log(uid, 'onEVENTSDELETE');
     admin
       .auth()
       .deleteUser(uid)
@@ -62,12 +63,13 @@ io.on('connect', function (sockets) {
     console.log('a DISCONNECT');
   });
   //METODO EDIT USER
-  sockets.on(events.EDIT_USER, (user) => {
+  sockets.on(events.EDIT_USER, (uid, email) => {
+    console.log(email, 'EMAIL PARAMS');
     admin
       .auth() // OBJECTO DE EJEMPLO
-      .updateUser(user.uid, {
-        email: 'modifiedUser@example.com',
-      }) //)
+      .updateUser(uid, {
+        email: email,
+      })
       .then((userRecord) => {
         // See the UserRecord reference doc for the contents of userRecord.
         console.log('Successfully updated user', userRecord.toJSON());

@@ -1,12 +1,11 @@
 import { auth } from '../../firebase/firebase.config';
-import { adm } from '../../firebase/firebase.admin';
 import {
   SET_CURRENT_USER,
   CLEAR_CURRENT_USER,
   USER_AUTH,
   USER_REG,
-  GET_USERS,
   RESET_APP,
+  USERS_STORE,
 } from '../types/userTypes';
 
 export const setCurrentUser = (user) => {
@@ -33,10 +32,13 @@ export const resetApp = () => ({
   type: RESET_APP,
 });
 
+export const storeUsers = (listUsers) => ({
+  type: USERS_STORE,
+  listUsers,
+});
+
 //firebase admin
 // export const getUsers = () => ({
 //   type: GET_USERS,
 //   payload: adm.listUsers(maxResults=30),
 // });
-
-

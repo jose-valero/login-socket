@@ -5,6 +5,7 @@ import {
   USER_REG,
   GET_USERS,
   RESET_APP,
+  USERS_STORE
 } from '../types/userTypes';
 
 const initialState = {
@@ -14,7 +15,8 @@ const initialState = {
   isLoading: false,
   errorAuth: null,
   getUsers: null,
-  error: null
+  error: null,
+  allUsers: []
 };
 
 const authReducer = (state = initialState, action) => {
@@ -84,6 +86,12 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
+        error: true
+      };
+    case `${USERS_STORE}`:
+      return {
+        ...state,
+        allUsers: action.listUsers,
         error: true
       };
 
