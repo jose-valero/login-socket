@@ -6,6 +6,7 @@ import {
   USER_REG,
   RESET_APP,
   USERS_STORE,
+  INCREMENT_LOG,
 } from '../types/userTypes';
 
 export const setCurrentUser = (user) => {
@@ -36,6 +37,12 @@ export const storeUsers = (listUsers) => ({
   type: USERS_STORE,
   listUsers,
 });
+
+export const incrementLog = () => ({
+  type: INCREMENT_LOG,
+});
+
+export const incrementReg = (params) => {};
 
 //firebase admin
 // export const getUsers = () => ({

@@ -5,12 +5,12 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { userAuth } from '../../../redux/actions/auth.actions';
+import { userAuth, incrementLog } from '../../../redux/actions/auth.actions';
 
 const LogIn = () => {
+  const state = useSelector((state) => state);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const state = useSelector((state) => state);
   const dispatch = useDispatch();
   const isUser = state.auth.currentUser;
   const history = useHistory();
@@ -24,6 +24,7 @@ const LogIn = () => {
   const handleSummit = (event) => {
     event.preventDefault();
     dispatch(userAuth(email, password));
+    dispatch(incrementLog());
     setEmail('');
     setPassword('');
     console.log(`LOGIN_: email:${email} - password:${password}`);

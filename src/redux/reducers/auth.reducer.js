@@ -5,7 +5,8 @@ import {
   USER_REG,
   GET_USERS,
   RESET_APP,
-  USERS_STORE
+  USERS_STORE,
+  INCREMENT_LOG,
 } from '../types/userTypes';
 
 const initialState = {
@@ -16,7 +17,8 @@ const initialState = {
   errorAuth: null,
   getUsers: null,
   error: null,
-  allUsers: []
+  allUsers: [],
+  januaryLogs: {},
 };
 
 const authReducer = (state = initialState, action) => {
@@ -70,7 +72,7 @@ const authReducer = (state = initialState, action) => {
         isRegError: action.error,
       };
 
-      //firebase admin
+    //firebase admin
     case `${GET_USERS}_START`:
       return {
         ...state,
@@ -86,13 +88,31 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        error: true
+        error: true,
       };
     case `${USERS_STORE}`:
       return {
         ...state,
         allUsers: action.listUsers,
-        error: true
+        error: true,
+      };
+
+    //detale a estudiar -> estudiar el acceso al objeto [], revisar y estudiar
+    case `${INCREMENT_LOG}`:
+      const nowDate = new Date();
+      const day = nowDate.getDate();
+      if (state.januaryLogs.hasOwnProperty(day)) {
+        return {
+          ...state,
+          januaryLogs: state.januaryLogs[day]++,
+        };
+      }
+      return {
+        ...state,
+        januaryLogs: {
+          ...state.januaryLogs,
+          day: 1,
+        },
       };
 
     case RESET_APP:
