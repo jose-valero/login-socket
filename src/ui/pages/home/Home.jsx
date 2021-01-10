@@ -3,8 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { onHome } from '../../../socketServices/socketService';
 import User from './User/User';
-import SingInChart from './SingInChart/SingInChart';
-import SingUpChart from './SingUpChart/SingUpChart';
+import ChartsContainer from './charts/ChartsContainer';
 
 onHome();
 const Home = () => {
@@ -12,6 +11,7 @@ const Home = () => {
   const userCollection = useSelector((state) => state.auth.allUsers);
 
   console.log(userCollection);
+
   return (
     <Container className='bg-light'>
       <div className='d-flex justify-content-center py-5'>
@@ -54,8 +54,7 @@ const Home = () => {
             ))}
         </Row>
       </Container>
-      {currentUser && <SingInChart />}
-      {currentUser && <SingUpChart />}
+      {currentUser && <ChartsContainer />}
     </Container>
   );
 };
