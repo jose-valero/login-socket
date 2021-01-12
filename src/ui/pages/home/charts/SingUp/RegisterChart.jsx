@@ -1,25 +1,33 @@
-import { Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 
 const RegisterChart = () => {
   return (
     <div className='my-5'>
-      <Bar
+      <Line
         data={{
           type: 'line',
           labels: [
-            'LUNES',
-            'MARTES',
-            'MIERCOLES',
-            'JUEVES',
-            'VIERNES',
-            'SABADO',
-            'DOMINGO',
+            '01',
+            '02',
+            '03',
+            '04',
+            '05',
+            '06',
+            '07',
+            '08',
+            '09',
+            '10',
+            '11',
+            '12',
+            '13',
+            '14',
+            '15',
           ],
           datasets: [
             {
-              label: 'hola CHAR REG',
+              label: 'HOLA CHART REG',
               data: [1250, 2500, 1646, 890, 3250, 180],
-              backgroundColor: [
+              pointBackgroundColor: [
                 'rgba(2, 197, 247)',
                 'rgba(81, 18, 227)',
                 'rgba(87, 63, 69)',

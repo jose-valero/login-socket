@@ -7,3 +7,5 @@ export const GET_USERS = 'GET_USERS';
 export const USER_DELETE = 'USER_DELETE';
 export const USERS_STORE = 'USERS_STORE';
 export const INCREMENT_LOG = 'INCREMENT_LOG';
+export const SET_JANUARY_LOGS = 'SET_JANUARY_LOGS';
+export const SET_JANUARY_REGS = 'SET_JANUARY_REGS';

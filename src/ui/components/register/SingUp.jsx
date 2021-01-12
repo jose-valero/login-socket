@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { userReg } from '../../../redux/actions/auth.actions';
+import { db } from '../../../firebase/firebase.config';
 
 const Register = () => {
   const [displayName, setDisplayName] = useState('');
@@ -16,6 +17,12 @@ const Register = () => {
   const state = useSelector((state) => state);
   const isUser = state.auth.isReg;
   const history = useHistory();
+  const [dailyRegs, setDailyRegs] = useState(0);
+  const [renderAgain, setRenderAgain] = useState(false);
+
+  const nowDate = new Date();
+  const day = nowDate.getDate().toString();
+  const month = (nowDate.getMonth() + 1).toString();
 
   useEffect(() => {
     if (isUser) {
@@ -25,6 +32,7 @@ const Register = () => {
 
   const handleSummit = (event) => {
     event.preventDefault();
+    // seRegOnDataBase();
     //validation firebase
     if (password === passwordConfirmation) {
       dispatch(userReg(email, password));
@@ -36,11 +44,41 @@ const Register = () => {
     setEmail('');
     setPassword('');
     setPasswordConfirmation('');
-  
+
     console.log(
       `REGISTER_: name:${displayName} - lastname:${lastName} - email:${email} - password:${password}`
     );
   };
+
+  const setRegOnDataBase = () => {
+    db.ref()
+      .child(month)
+      .update({
+        [day]: dailyRegs + 1,
+      });
+    setRenderAgain(true);
+  };
+
+  // const seRegOnDataBase = () => {
+  //   db.ref()
+  //     .child(month)
+  //     .update({
+  //       [day]: dailyRegs + 1,
+  //     });
+  //   // setRenderAgain(true);
+  // };
+
+  // useEffect(() => {
+  //   var daydailyRegs = db.ref("regs");
+  //   daydailyRegs.on('value', (snapshot) => {
+  //     const value = snapshot.val();
+  //     setDailyRegs(value);
+  //     dispatch(setJanuaryRegs(day, value));
+  //   });
+  //   // setRenderAgain(false);
+  // }, [day]);
+
+  // console.log('dailyRegs:', dailyRegs);
 
   //styles
   const TitleStyle = {

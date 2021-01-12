@@ -1,23 +1,12 @@
 import { auth } from '../../firebase/firebase.config';
 import {
-  SET_CURRENT_USER,
-  CLEAR_CURRENT_USER,
   USER_AUTH,
   USER_REG,
   RESET_APP,
   USERS_STORE,
-  INCREMENT_LOG,
+  SET_JANUARY_LOGS,
+  SET_JANUARY_REGS
 } from '../types/userTypes';
-
-export const setCurrentUser = (user) => {
-  return {
-    type: SET_CURRENT_USER,
-    payload: user,
-  };
-};
-export const clearCurrentUser = () => ({
-  type: CLEAR_CURRENT_USER,
-});
 
 export const userAuth = (email, password) => ({
   type: USER_AUTH,
@@ -38,14 +27,17 @@ export const storeUsers = (listUsers) => ({
   listUsers,
 });
 
-export const incrementLog = () => ({
-  type: INCREMENT_LOG,
+export const setJanuaryLogs = (logs) => ({
+  type: SET_JANUARY_LOGS,
+  logs,
+});
+export const setJanuaryRegs = (regs) => ({
+  type: SET_JANUARY_REGS,
+  regs,
 });
 
-export const incrementReg = (params) => {};
 
-//firebase admin
-// export const getUsers = () => ({
-//   type: GET_USERS,
-//   payload: adm.listUsers(maxResults=30),
+// export const updateLog = (day) => ({
+//   type: 'UPDATE_LOG',
+//   day,
 // });

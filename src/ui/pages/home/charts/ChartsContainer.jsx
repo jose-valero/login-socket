@@ -2,10 +2,10 @@ import React from 'react';
 import LogedChart from './SingIn/LogedChart';
 import RegisterChart from './SingUp/RegisterChart';
 
-const ChartsContainer = () => {
+const ChartsContainer = ({ januaryLogs }) => {
   return (
     <>
-      <LogedChart />
+      <LogedChart januaryLogs={januaryLogs} />
       <RegisterChart />
     </>
   );

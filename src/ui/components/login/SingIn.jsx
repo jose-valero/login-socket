@@ -5,30 +5,56 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { userAuth, incrementLog } from '../../../redux/actions/auth.actions';
+import { userAuth, setJanuaryLogs } from '../../../redux/actions/auth.actions';
+import { db } from '../../../firebase/firebase.config';
 
 const LogIn = () => {
   const state = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const isUser = state.auth.currentUser;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const dispatch = useDispatch();
-  const isUser = state.auth.currentUser;
-  const history = useHistory();
+  const [dailyLogs, setDailyLogs] = useState(0);
+  const [renderAgain, setRenderAgain] = useState(false);
 
-  useEffect(() => {
-    if (isUser) {
-      history.push('/');
-    }
-  }, [isUser, history]);
+  const nowDate = new Date();
+  const day = nowDate.getDate().toString();
+  const month = (nowDate.getMonth() + 1).toString();
 
+  //summit to the database and state
   const handleSummit = (event) => {
     event.preventDefault();
     dispatch(userAuth(email, password));
-    dispatch(incrementLog());
+    setLogOnDataBase();
     setEmail('');
     setPassword('');
     console.log(`LOGIN_: email:${email} - password:${password}`);
   };
+
+  //write data
+  const setLogOnDataBase = () => {
+    db.ref()
+      .child(month)
+      .update({
+        [day]: dailyLogs + 1,
+      });
+    setRenderAgain(true);
+  };
+
+  // read data
+  useEffect(() => {
+    if (isUser) {
+      history.push('/');
+    }
+    var daydailyLogs = db.ref(`${month}`);
+    daydailyLogs.on('value', (snapshot) => {
+      const logs = snapshot.val();
+      setDailyLogs(logs[day]);
+      dispatch(setJanuaryLogs(logs));
+    });
+    setRenderAgain(false);
+  }, [renderAgain, isUser, history, day, dispatch, month]);
 
   return (
     <Container className=''>
@@ -69,6 +95,7 @@ const LogIn = () => {
             register
           </Link>
         </Form.Text>
+
         <Button variant='primary' type='submit' className='my-4'>
           Submit
         </Button>

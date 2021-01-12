@@ -9,6 +9,7 @@ onHome();
 const Home = () => {
   const currentUser = useSelector((state) => state.auth.currentUser);
   const userCollection = useSelector((state) => state.auth.allUsers);
+  const januaryLogs = useSelector((state) => state.auth.januaryLogs);
 
   console.log(userCollection);
 
@@ -54,7 +55,7 @@ const Home = () => {
             ))}
         </Row>
       </Container>
-      {currentUser && <ChartsContainer />}
+      {currentUser && <ChartsContainer januaryLogs={januaryLogs} />}
     </Container>
   );
 };

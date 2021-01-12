@@ -1,12 +1,11 @@
 import {
-  SET_CURRENT_USER,
-  CLEAR_CURRENT_USER,
   USER_AUTH,
   USER_REG,
   GET_USERS,
   RESET_APP,
   USERS_STORE,
-  INCREMENT_LOG,
+  SET_JANUARY_LOGS,
+  SET_JANUARY_REGS,
 } from '../types/userTypes';
 
 const initialState = {
@@ -19,21 +18,11 @@ const initialState = {
   error: null,
   allUsers: [],
   januaryLogs: {},
+  januaryRegs: {},
 };
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_CURRENT_USER:
-      return {
-        ...state,
-        currentUser: action.payload,
-      };
-
-    case CLEAR_CURRENT_USER:
-      return {
-        ...state,
-        currentUser: null,
-      };
     case `${USER_AUTH}_START`:
       return {
         ...state,
@@ -97,28 +86,35 @@ const authReducer = (state = initialState, action) => {
         error: true,
       };
 
-    //detale a estudiar -> estudiar el acceso al objeto [], revisar y estudiar
-    case `${INCREMENT_LOG}`:
-      const nowDate = new Date();
-      const day = nowDate.getDate();
-      if (state.januaryLogs.hasOwnProperty(day)) {
-        return {
-          ...state,
-          januaryLogs: state.januaryLogs[day]++,
-        };
-      }
+    case SET_JANUARY_LOGS:
       return {
         ...state,
-        januaryLogs: {
-          ...state.januaryLogs,
-          day: 1,
-        },
+        januaryLogs: action.logs,
+      };
+    case SET_JANUARY_REGS:
+      return {
+        ...state,
+        januaryRegs: action.regs,
       };
 
     case RESET_APP:
-      return initialState;
+      return {
+        ...state,
+        currentUser: null,
+        isReg: null,
+        isRegError: null,
+        isLoading: false,
+        errorAuth: null,
+        getUsers: null,
+        error: null,
+        // allUsers: [],
+        januaryLogs: state.januaryLogs,
+        januaryRegs: state.januaryRegs,
+      };
     default:
-      return state;
+      return {
+        ...state,
+      };
   }
 };
 
