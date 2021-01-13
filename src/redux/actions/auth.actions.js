@@ -5,7 +5,7 @@ import {
   RESET_APP,
   USERS_STORE,
   SET_JANUARY_LOGS,
-  SET_JANUARY_REGS
+  SET_JANUARY_REGS,
 } from '../types/userTypes';
 
 export const userAuth = (email, password) => ({
@@ -35,9 +35,3 @@ export const setJanuaryRegs = (regs) => ({
   type: SET_JANUARY_REGS,
   regs,
 });
-
-
-// export const updateLog = (day) => ({
-//   type: 'UPDATE_LOG',
-//   day,
-// });

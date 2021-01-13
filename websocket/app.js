@@ -1,7 +1,6 @@
 const express = require('express');
 const socket = require('socket.io');
 const { createServer } = require('http');
-const mockDb = require('./db/mockDB');
 const events = require('./events/eventEnum');
 
 // App setup
@@ -62,6 +61,7 @@ io.on('connect', function (sockets) {
   sockets.on(events.DISCONNECT, (socket) => {
     console.log('a DISCONNECT');
   });
+  
   //METODO EDIT USER
   sockets.on(events.EDIT_USER, (uid, email) => {
     console.log(email, 'EMAIL PARAMS');
