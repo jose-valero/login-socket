@@ -23,7 +23,7 @@ const listAllUsers = (nextPageToken) => {
   // List batch of users, 1000 at a time.
   admin
     .auth()
-    .listUsers(12, nextPageToken)
+    .listUsers(100, nextPageToken)
     .then((listUsersResult) => {
       io.emit(events.LIST_USER, listUsersResult);
     })

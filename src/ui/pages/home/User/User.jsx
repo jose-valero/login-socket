@@ -23,7 +23,7 @@ function User({ email, uid }) {
   };
   return (
     <Col xs='12' sm='12' md='12' lg='3' className='my-4'>
-      <Card border="primary">
+      <Card border='primary'>
         <Card.Body>
           <Card.Title className=''>
             <b>EMAIL:</b> {email}

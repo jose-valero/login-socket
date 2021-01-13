@@ -1,9 +1,6 @@
 import { Line } from 'react-chartjs-2';
 
 const LogedChart = ({ januaryLogs }) => {
-  const nowDate = new Date();
-  const day = nowDate.getDate().toString();
-
   const data = {
     labels: [
       '1',
@@ -39,9 +36,30 @@ const LogedChart = ({ januaryLogs }) => {
     ],
     datasets: [
       {
-        label: 'LOG DIARIO',
+        label: '# of Logs daily',
         data: [],
         pointBackgroundColor: [
+          'rgba(2, 197, 247)',
+          'rgba(81, 18, 227)',
+          'rgba(87, 63, 69)',
+          'rgba(217, 4, 57)',
+          'rgba(211, 242, 31)',
+          'rgba(151, 187, 194)',
+          'rgba(18, 18, 18)',
+          'rgba(2, 197, 247)',
+          'rgba(81, 18, 227)',
+          'rgba(87, 63, 69)',
+          'rgba(217, 4, 57)',
+          'rgba(211, 242, 31)',
+          'rgba(151, 187, 194)',
+          'rgba(18, 18, 18)',
+          'rgba(2, 197, 247)',
+          'rgba(81, 18, 227)',
+          'rgba(87, 63, 69)',
+          'rgba(217, 4, 57)',
+          'rgba(211, 242, 31)',
+          'rgba(151, 187, 194)',
+          'rgba(18, 18, 18)',
           'rgba(2, 197, 247)',
           'rgba(81, 18, 227)',
           'rgba(87, 63, 69)',
@@ -58,14 +76,11 @@ const LogedChart = ({ januaryLogs }) => {
     const dataY = data.datasets[0].data;
     if (januaryLogs.hasOwnProperty(labels)) {
       dataY.push(januaryLogs[labels]);
-      console.log('into iter DAY', day);
-      console.log('INTO ITER januaryLogs[day]', januaryLogs[day]);
-      console.log('INTO ITER januaryLogs[labels]', januaryLogs[labels]);
     } else {
       dataY.push(0);
     }
   });
-  console.log('YYYY januaryLogs', januaryLogs);
+
   console.log('chart data', data);
 
   return (
