@@ -38,6 +38,9 @@ $ npm run start
 React devTools
 redux Devtools
 
+### Author
+[Jose Miguel Valero]
+
 License
 ----
 
@@ -45,7 +48,7 @@ MIT
 
 **Free Software, Hell Yeah!**
 
-   [me]: <https://github.com/jose-valero?tab=repositories>
+   [Jose Miguel Valero]: <https://github.com/jose-valero?tab=repositories>
    [wispro-app]: <https://github.com/jose-valero/wispro>
    [node.js]: <http://nodejs.org>
    [express]: <http://expressjs.com>
