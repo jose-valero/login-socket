@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# wispro-app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+###### [wispro-app] is a tool with a logging and authentication flow, where credentials are stored in the firebase authentication service .
 
-## Available Scripts
+# Tools and technologies!
 
-In the project directory, you can run:
+  - [reactjs]
+  - [redux]
+  - [firebase]
+  - [chart.js]
+  - [react-chartjs-2]
+  - [sass]
+  - [react-Bootstrap]
+  - [node.js] 
+  - [socket.io]
+  - [Express]
 
-### `npm start`
+### Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+wispro-app requires [Node.js] v12+ to run.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Install the dependencies and devDependencies at websocket and start the server.
 
-### `npm test`
+```sh
+$ cd websocket
+$ npm install 
+$ node app.js
+```
+For frontend environments...
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```sh
+$ cd ..
+$ npm install 
+$ npm run start
+```
 
-### `npm run build`
+### Plugins
+React devTools
+redux Devtools
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+License
+----
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+MIT
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Free Software, Hell Yeah!**
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   [me]: <https://github.com/jose-valero?tab=repositories>
+   [wispro-app]: <https://github.com/jose-valero/wispro>
+   [node.js]: <http://nodejs.org>
+   [express]: <http://expressjs.com>
+   [reactjs]: <https://reactjs.org/>
+   [firebase]: <https://reactjs.org/>
+   [redux]: <https://reactjs.org/>
+   [chart.js]: <https://reactjs.org/>
+   [react-chartjs-2]: <https://reactjs.org/>
+   [sass]: <https://reactjs.org/>
+   [redux]: <https://reactjs.org/>
+   [react-Bootstrap]: <https://reactjs.org/>
+   [socket.io]: <https://reactjs.org/>
+   [react DevTools]: <https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en/>
+   [redux DevTools]: <https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en/>
