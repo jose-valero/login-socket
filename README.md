@@ -24,14 +24,21 @@ Install the dependencies and devDependencies at websocket and start the server.
 ```sh
 $ cd websocket
 $ npm install 
-$ node app.js
 ```
-For frontend environments...
+For frontend environments... we cant run the app in one shot with **npm run dev** usin the library **concurrently 5.3.0**   added the script
 
+```json
+ 	 "scripts": {
+   	 "server": "cd websocket && node app.js",
+   	 "start": "react-scripts start",
+ 	   "dev": "concurrently \"npm run server\" \"npm run start\"",
+  },
+```
+---
 ```sh
 $ cd ..
 $ npm install 
-$ npm run start
+$ npm run dev
 ```
 
 ### Plugins
